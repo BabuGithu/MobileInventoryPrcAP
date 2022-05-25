@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="mobile-inventory-prc-api-test-suite.xml" />
+	<munit:test name="mobile-inventory-prc-api-test-suite-post:\mobileinvupdate:application\json:mobile-inventory-prc-api-configTest" doc:id="16d5350c-5971-4417-b828-cb4d864897b6" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="988d099a-81ed-44be-8815-ff0cb5dcf5a8" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Request" attributeName="doc:name" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="a6bbd44c-dfed-4edb-b87e-40a8b0c6022f" >
+				<munit:payload value="#[MunitTools::getResourceAsString('updateinput.json')]" mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\mobileinvupdate:application\json:mobile-inventory-prc-api-config" doc:id="34a154b6-d1a1-4243-8c78-84141cf8db19" name="post:\mobileinvupdate:application\json:mobile-inventory-prc-api-config"/>
+		</munit:execution>
+	</munit:test>
+	<munit:test name="mobile-inventory-prc-api-test-suite-post:\mobileselect:application\json:mobile-inventory-prc-api-configTest" doc:id="78a28d71-f95d-4b06-af5f-94e590ea10c4" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="46a6180e-3c25-4d9b-89b3-f2326d01e470" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Request" attributeName="doc:name" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="4a49e320-060a-49b2-ad43-5d1b6346f4ac" >
+				<munit:payload value="#[MunitTools::getResourceAsString('selectinput.json')]" mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\mobileselect:application\json:mobile-inventory-prc-api-config" doc:id="d63552dc-b5d6-48c3-9a44-6b76c505fd4b" name="post:\mobileselect:application\json:mobile-inventory-prc-api-config"/>
+		</munit:execution>
+	</munit:test>
+
+
+</mule>
